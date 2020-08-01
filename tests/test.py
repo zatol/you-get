@@ -7,7 +7,9 @@ from you_get.extractors import (
     magisto,
     youtube,
     missevan,
-    acfun
+    acfun,
+    bilibili,
+    soundcloud
 )
 
 
@@ -21,13 +23,6 @@ class YouGetTests(unittest.TestCase):
             info_only=True
         )
 
-    def test_missevan(self):
-        missevan.download('https://m.missevan.com/sound/1285995', info_only=True)
-        missevan.download_playlist(
-            'https://www.missevan.com/mdrama/drama/24130', info_only=True)
-        missevan.download_playlist(
-            'https://www.missevan.com/albuminfo/203090', info_only=True)
-
     def test_youtube(self):
         youtube.download(
             'http://www.youtube.com/watch?v=pzKerr0JIPA', info_only=True
@@ -37,9 +32,30 @@ class YouGetTests(unittest.TestCase):
             'http://www.youtube.com/attribution_link?u=/watch?v%3DldAKIzq7bvs%26feature%3Dshare',  # noqa
             info_only=True
         )
+        youtube.download(
+            'https://www.youtube.com/watch?v=Fpr4fQSh1cc', info_only=True
+        )
 
     def test_acfun(self):
         acfun.download('https://www.acfun.cn/v/ac11701912', info_only=True)
+
+    def test_bilibil(self):
+        bilibili.download(
+            "https://www.bilibili.com/watchlater/#/BV1PE411q7mZ/p6", info_only=True
+        )
+        bilibili.download(
+            "https://www.bilibili.com/watchlater/#/av74906671/p6", info_only=True
+        )
+
+    def test_soundcloud(self):
+        ## single song
+        soundcloud.download(
+            'https://soundcloud.com/keiny-pham/impure-bird', info_only=True
+        )
+        ## playlist
+        soundcloud.download(
+            'https://soundcloud.com/anthony-flieger/sets/cytus', info_only=True
+        )
 
 if __name__ == '__main__':
     unittest.main()
